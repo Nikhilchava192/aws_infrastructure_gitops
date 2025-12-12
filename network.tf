@@ -1,27 +1,13 @@
 resource "azurerm_virtual_network" "vnet" {
-  name                = "vnet01"
-  address_space       = ["10.0.0.0/16"]
-  location            = "southindia"
-  resource_group_name = "rg01"
+  name                = var.vnet
+  address_space       = var.ipaddress
+  location            = var.location
+  resource_group_name = var.rg
 }
 
 resource "azurerm_subnet" "subnet" {
-  name                 = "subnet01"
-  resource_group_name  = "rg01"
-  virtual_network_name = "vnet01"
+  name                 = var.subnet
+  resource_group_name  = var.rg
+  virtual_network_name = var.vnet
   address_prefixes     = ["10.0.1.0/24"]
-}
-
-resource "azurerm_virtual_network" "vnet1" {
-  name                = "vnet02"
-  address_space       = ["10.1.0.0/16"]
-  location            = "southindia"
-  resource_group_name = "rg01"
-}
-
-resource "azurerm_subnet" "subnet1" {
-  name                 = "subnet02"
-  resource_group_name  = "rg01"
-  virtual_network_name = "vnet02"
-  address_prefixes     = ["10.1.1.0/24"]
 }
