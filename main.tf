@@ -7,14 +7,12 @@ terraform {
     }
   }
 
-  # Migration to Remote Backend
-  # IMPORTANT: Update these string values with your manually created S3 Bucket and DynamoDB table names
-  backend "s3" {
-    bucket         = "YOUR-UNIQUE-TERRAFORM-STATE-BUCKET"
-    key            = "gitops-iac/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "YOUR-TERRAFORM-LOCK-TABLE"
-    encrypt        = true
+    backend "s3" {
+    bucket       = "nikhilch"
+    key          = "gitops-iac/terraform.tfstate"
+    region       = "us-east-1"
+    use_lockfile = true      
+    encrypt      = true
   }
 }
 
